@@ -176,6 +176,18 @@ module.exports = {
               // @remove-on-eject-begin
               babelrc: false,
               presets: [require.resolve('babel-preset-react-app')],
+              plugins: [
+                [
+                  'babel-plugin-react-css-modules',
+                  {
+                    filetypes: {
+                      '.scss': {
+                        syntax: 'postcss-scss',
+                      },
+                    },
+                  },
+                ],
+              ],
               // @remove-on-eject-end
               compact: true,
             },
@@ -207,10 +219,16 @@ module.exports = {
                     {
                       loader: require.resolve('css-loader'),
                       options: {
+                        modules: true,
                         importLoaders: 1,
                         minimize: true,
+                        localIdentName:
+                          '[path]___[name]__[local]___[hash:base64:5]',
                         sourceMap: shouldUseSourceMap,
                       },
+                    },
+                    {
+                      loader: require.resolve('sass-loader'),
                     },
                     {
                       loader: require.resolve('postcss-loader'),
@@ -301,7 +319,7 @@ module.exports = {
       },
       mangle: {
         safari10: true,
-      },        
+      },
       output: {
         comments: false,
         // Turned on because emoji and regex is not minified properly using default
