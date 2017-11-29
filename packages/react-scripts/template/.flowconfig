@@ -1,0 +1,18 @@
+[ignore]
+.*\.test\.js
+
+[include]
+
+[libs]
+flow/
+src/types/
+
+[lints]
+
+[options]
+module.name_mapper='.*\(.s?css\)' -> 'empty/object'
+module.name_mapper='^src/\(.*\)' -> '<PROJECT_ROOT>/src/\1'
+module.name_mapper='^\(.*\)' -> '<PROJECT_ROOT>/src/\1'
+
+[version]
+0.59.0

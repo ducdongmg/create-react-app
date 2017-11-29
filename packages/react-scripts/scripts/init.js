@@ -43,8 +43,9 @@ module.exports = function(
     eject: 'react-scripts eject',
     lint: 'eslint . && sass-lint --verbose',
     flow: 'flow',
+    'flow-typed': 'flow-typed',
     testall:
-      'react-scripts test --env=jsdom && flow && react-scripts test --env=jsdom',
+      'CI=true react-scripts test --env=jsdom && flow && react-scripts test --env=jsdom --coverage',
   };
 
   appPackage.sasslintConfig = '.sass-lint.yml';
