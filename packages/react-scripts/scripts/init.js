@@ -41,7 +41,13 @@ module.exports = function(
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
     eject: 'react-scripts eject',
+    lint: 'eslint . && sass-lint --verbose',
+    flow: 'flow',
+    testall:
+      'react-scripts test --env=jsdom && flow && react-scripts test --env=jsdom',
   };
+
+  appPackage.sasslintConfig = '.sass-lint.yml';
 
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
