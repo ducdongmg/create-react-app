@@ -1,10 +1,10 @@
 /* eslint-disable */
 
-'use strict';
+'use strict'
 
-var client = require('firebase-tools');
+var client = require('firebase-tools')
 
-console.log('Start deploying, wait please');
+console.log('Start deploying, wait please')
 
 client
   .deploy({
@@ -13,9 +13,9 @@ client
     cwd: '../build',
   })
   .then(function() {
-    console.log('Your project has been deployed!');
-    process.exit();
+    console.log('Your project has been deployed!')
+    process.exit()
   })
   .catch(function(err) {
-    console.log('Opps!!! Error: ', err);
-  });
+    console.log('Opps!!! Error: ', err)
+  })

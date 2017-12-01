@@ -1,3 +1,3 @@
 // @flow
 
-declare type SampleGlobalType = string;
+declare type SampleGlobalType = string
