@@ -44,8 +44,7 @@ module.exports = function(
     lint: 'eslint . && sass-lint --verbose',
     flow: 'flow',
     'flow-typed': 'flow-typed',
-    testall:
-      'CI=true react-scripts test --env=jsdom && flow && react-scripts test --env=jsdom --coverage',
+    testall: 'eslint . && sass-lint --verbose && flow && CI=true react-scripts test --env=jsdom --coverage'
   };
 
   appPackage.sasslintConfig = '.sass-lint.yml';
@@ -106,7 +105,23 @@ module.exports = function(
     command = 'npm';
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
-  args.push('react', 'react-dom');
+  args.push(
+    'react',
+    'react-dom',
+    'classnames',
+    'enzyme',
+    'enzyme-adapter-react-16',
+    'enzyme-to-json',
+    'normalize.css',
+    'react-redux',
+    'react-router-dom',
+    'redux',
+    'redux-actions',
+    'redux-devtools-extension',
+    'reselect',
+    'redux-form',
+    'redux-thunk'
+  );
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
