@@ -11,5 +11,17 @@ const babelJest = require('babel-jest');
 
 module.exports = babelJest.createTransformer({
   presets: [require.resolve('babel-preset-react-app')],
+  plugins: [
+    [
+      'babel-plugin-react-css-modules',
+      {
+        filetypes: {
+          '.scss': {
+            syntax: 'postcss-scss',
+          },
+        },
+      },
+    ],
+  ],
   babelrc: false,
 });
