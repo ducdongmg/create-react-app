@@ -1,0 +1,69 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:17.06-git
+
+    working_directory: ~/codelink-training/
+
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          reusable: true
+          exclusive: true
+
+      - run:
+          name: Spin down containers and remove volumes
+          command: |
+            set -x
+            docker-compose down --remove-orphans
+            docker volume prune -f
+
+      - run:
+          name: Build and start containers
+          command: |
+            set -x
+            docker-compose build
+
+      - run:
+          name: Get docker info
+          command: |
+            set -x
+            docker version
+            docker info
+            docker-compose version
+            docker images
+            docker ps
+            docker-compose ps
+
+      - run:
+          name: Run tests
+          command: |
+            set -x
+            # these tests always run
+            docker-compose up test
+
+      - deploy:
+          name: Deploy from master
+          command: |
+            set -x
+
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              # create build tag based on circle build number
+              VERSION=$(grep '"version":' package.json | cut -d\" -f4)
+              BUILD_TAG="build-${VERSION}.${CIRCLE_BUILD_NUM}"
+
+              docker-compose up deploy
+
+              # git tag with build tag to mark this build
+              cd ~/codelink-training
+              git tag -a $BUILD_TAG -m "CircleCI ${BUILD_TAG}"
+              git push origin $BUILD_TAG
+            fi
+
+experimental:
+  notify:
+    branches:
+      only:
+        - master
