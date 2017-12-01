@@ -8,7 +8,7 @@ class App extends Component {
       <div styleName="app">
         <header styleName="app-header">
           <img src={codelink} styleName="app-logo" alt="logo" />
-          <h1 styleName="app-title">Welcome to CodeLink training Program</h1>
+          <h1 styleName="app-title">Welcome to CodeLink Training Program</h1>
         </header>
       </div>
     );
