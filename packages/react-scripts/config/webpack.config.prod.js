@@ -187,6 +187,16 @@ module.exports = {
                     },
                   },
                 ],
+                [
+                  'module-resolver',
+                  {
+                    root: [paths.appSrc],
+                    alias: {
+                      screens: paths.appSrc + '/components/screens',
+                      common: paths.appSrc + '/components/common',
+                    },
+                  },
+                ],
               ],
               // @remove-on-eject-end
               compact: true,

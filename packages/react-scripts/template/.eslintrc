@@ -23,7 +23,7 @@
     "react/no-unused-prop-types": 0,
     "jsx-quotes": [
       "error",
-      "prefer-single"
+      "prefer-double"
     ],
     "max-len": [
       "error",

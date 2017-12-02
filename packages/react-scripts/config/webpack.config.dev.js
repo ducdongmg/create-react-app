@@ -152,6 +152,16 @@ module.exports = {
                     },
                   },
                 ],
+                [
+                  'module-resolver',
+                  {
+                    root: [paths.appSrc],
+                    alias: {
+                      screens: paths.appSrc + '/components/screens',
+                      common: paths.appSrc + '/components/common',
+                    },
+                  },
+                ],
               ],
               // @remove-on-eject-end
               // This is a feature of `babel-loader` for webpack (not Babel itself).
