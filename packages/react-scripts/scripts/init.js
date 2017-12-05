@@ -106,23 +106,7 @@ module.exports = function(
     command = 'npm';
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
-  args.push(
-    'react',
-    'react-dom',
-    'classnames',
-    'enzyme',
-    'enzyme-adapter-react-16',
-    'enzyme-to-json',
-    'normalize.css',
-    'react-redux',
-    'react-router-dom',
-    'redux',
-    'redux-actions',
-    'redux-devtools-extension',
-    'reselect',
-    'redux-form',
-    'redux-thunk'
-  );
+  args.push('react', 'react-dom');
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
@@ -151,6 +135,36 @@ module.exports = function(
       console.error(`\`${command} ${args.join(' ')}\` failed`);
       return;
     }
+  }
+
+  let extraArgs;
+  if (useYarn) {
+    command = 'yarnpkg';
+    extraArgs = ['add'];
+  } else {
+    command = 'npm';
+    extraArgs = ['install', '--save', verbose && '--verbose'].filter(e => e);
+  }
+  extraArgs.push(
+    'classnames',
+    'enzyme',
+    'enzyme-adapter-react-16',
+    'enzyme-to-json',
+    'normalize.css',
+    'react-redux',
+    'react-router-dom',
+    'redux',
+    'redux-actions',
+    'redux-devtools-extension',
+    'reselect',
+    'redux-form',
+    'redux-thunk'
+  );
+  console.log('Installing codelink extra dependencies for redux project');
+  const proc = spawn.sync(command, extraArgs, { stdio: 'inherit' });
+  if (proc.status !== 0) {
+    console.error(`\`${command} ${extraArgs.join(' ')}\` failed`);
+    return;
   }
 
   // Display the most elegant way to cd.
