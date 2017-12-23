@@ -17,4 +17,5 @@ services:
       context: .
       args:
         FIREBASE_TOKEN:
-    command: node ./scripts/deploy.js
+        TRAINING_PROJECT_NAME:
+    command: ./scripts/deploy.sh

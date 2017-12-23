@@ -158,7 +158,10 @@ module.exports = function(
     'redux-devtools-extension',
     'reselect',
     'redux-form',
-    'redux-thunk'
+    'redux-thunk',
+    'rxjs',
+    'redux-observable',
+    'redux-mock-store'
   );
   console.log('Installing codelink extra dependencies for redux project');
   const proc = spawn.sync(command, extraArgs, { stdio: 'inherit' });
