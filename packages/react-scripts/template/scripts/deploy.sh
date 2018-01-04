@@ -1,4 +1,6 @@
+#!/bin/bash
+
 set -e
 
 npm link firebase-tools
-node ./push-to-firebase.js
+node scripts/push-to-firebase.js

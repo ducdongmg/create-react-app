@@ -14,6 +14,13 @@ jobs:
           exclusive: true
 
       - run:
+          name: Install build tools
+          command: |
+            set -x
+            apk add --update py-pip bash zip
+            pip install docker-compose
+
+      - run:
           name: Spin down containers and remove volumes
           command: |
             set -x
@@ -42,7 +49,7 @@ jobs:
           command: |
             set -x
             # these tests always run
-            docker-compose up test
+            docker-compose run test
 
       - deploy:
           name: Deploy from master

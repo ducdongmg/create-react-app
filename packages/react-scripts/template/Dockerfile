@@ -8,8 +8,16 @@ RUN npm install -g firebase-tools
 
 ENV NPM_CONFIG_LOGLEVEL warn
 
+# add nginx repo and install dependencies
+RUN apt-get update && \
+    apt-get install -y nginx git bzip2 python make g++ libfreetype6 libfontconfig unzip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 ARG FIREBASE_TOKEN
 ENV FIREBASE_TOKEN $FIREBASE_TOKEN
+ARG TRAINING_PROJECT_NAME
+ENV TRAINING_PROJECT_NAME $TRAINING_PROJECT_NAME
 
 COPY package.json package.json
 
