@@ -42,6 +42,7 @@ module.exports = function(
     test: 'react-scripts test --env=jsdom',
     eject: 'react-scripts eject',
     lint: 'eslint . && sass-lint --verbose',
+    'lint-fix': 'eslint . --fix && sass-lint --fix',
     flow: 'flow',
     'flow-typed': 'flow-typed',
     testall:
